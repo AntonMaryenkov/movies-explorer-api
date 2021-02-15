@@ -13,8 +13,6 @@ const {
   textSimplePassword,
 } = require('../constants/constants');
 
-// const { NODE_ENV, JWT_SECRET } = process.env;
-
 const handleError = (err) => {
   if (err.name === 'ValidationError') {
     return true;
@@ -72,16 +70,16 @@ const getCurrentUser = (req, res, next) => {
 
 const updateInfoUser = (req, res, next) => {
   const { name, email } = req.body;
-  if (name.trim().length < 2) {
+  if (name !== undefined && name.trim().length < 2) {
     return next(new NotFoundError(textNameLengthMin));
   }
   return User.findByIdAndUpdate(
     req.user._id,
     { name, email },
-    // Передадим объект опций:
     {
-      new: true, // обработчик then получит на вход обновлённую запись
-      runValidators: true, // данные будут валидированы перед изменением
+      new: true,
+      runValidators: true,
+      omitUndefined: true,
     },
   )
     .then((user) => res.send(user))
@@ -98,9 +96,7 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      // создадим токен
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-      // вернём токен
       res.send({ token });
     })
     .catch((err) => {

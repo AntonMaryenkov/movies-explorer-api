@@ -23,15 +23,15 @@ const movieSchema = mongoose.Schema({
     required: true,
   },
   image: {
-    type: String, // записать как url, validator?
+    type: String,
     required: true,
     validate: {
       validator: (v) => validator.isURL(v),
-      message: 'Поле "image" должно быть валидным url-адресом', // надо ли оно нам?
+      message: 'Поле "image" должно быть валидным url-адресом',
     },
   },
   trailer: {
-    type: String, // записать как url, validator?
+    type: String,
     required: true,
     validate: {
       validator: (v) => validator.isURL(v),
@@ -39,7 +39,7 @@ const movieSchema = mongoose.Schema({
     },
   },
   thumbnail: {
-    type: String, // записать как url, validator?
+    type: String,
     required: true,
     validate: {
       validator: (v) => validator.isURL(v),

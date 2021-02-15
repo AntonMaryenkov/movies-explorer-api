@@ -4,14 +4,14 @@ const { ObjectId } = require('mongoose').Types;
 
 const validateUserBody = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30)
+    name: Joi.string().min(2).max(30)
       .messages({
         'any.required': 'Запоните поле "Имя"',
         'string.empty': 'Запоните поле "Имя"',
         'string.min': 'Минимальная длина поля "Имя" - 2 символа',
         'string.max': 'Максимальная длина поля "Имя" - 30 символов',
       }),
-    email: Joi.string().required().custom((value, helpers) => {
+    email: Joi.string().custom((value, helpers) => {
       if (validator.isEmail(value)) {
         return value;
       }
@@ -39,7 +39,6 @@ const validateMovieBody = celebrate({
     duration: Joi.number().required()
       .messages({
         'any.required': 'Поле "duration" не может быть пустым',
-        // 'number.number': 'Поле "duration" не может быть пустым',
       }),
     year: Joi.string().required()
       .messages({
@@ -84,7 +83,6 @@ const validateMovieBody = celebrate({
     movieId: Joi.number().required()
       .messages({
         'any.required': 'Поле "movieId" не может быть пустым',
-        // 'string.empty': 'Поле "movieId" не может быть пустым',
       }),
     nameRU: Joi.string().required()
       .messages({
