@@ -72,7 +72,10 @@ const getCurrentUser = (req, res, next) => {
 
 const updateInfoUser = (req, res, next) => {
   const { name, email } = req.body;
-  User.findByIdAndUpdate(
+  if (name.trim().length < 2) {
+    return next(new NotFoundError(textNameLengthMin));
+  }
+  return User.findByIdAndUpdate(
     req.user._id,
     { name, email },
     // Передадим объект опций:
@@ -93,7 +96,6 @@ const updateInfoUser = (req, res, next) => {
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
-
   return User.findUserByCredentials(email, password)
     .then((user) => {
       // создадим токен
