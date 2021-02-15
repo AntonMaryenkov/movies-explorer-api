@@ -2,6 +2,7 @@ const router = require('express').Router();
 const usersRouter = require('./users');
 const moviesRouter = require('./movies');
 const auth = require('../middlewares/auth');
+const err = require('../controllers/err');
 
 const {
   createUser, login,
@@ -15,5 +16,6 @@ router.post('/signup', validateRegister, createUser);
 router.use(auth);
 router.use('/', usersRouter);
 router.use('/', moviesRouter);
+router.get('/*', err);
 
 module.exports = router;

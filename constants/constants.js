@@ -8,6 +8,7 @@ const textAuthRequired = 'Необходима авторизация';
 const textNameLengthMin = 'Минимальная длина поля "Имя" - 2 символа';
 const textSimplePassword = 'Простой пароль';
 const textServerErr = 'На сервере произошла ошибка';
+const textNotFound = 'Запрашиваемый ресурс не найден';
 
 module.exports = {
   textInvalidData,
@@ -20,4 +21,5 @@ module.exports = {
   textNameLengthMin,
   textSimplePassword,
   textServerErr,
+  textNotFound,
 };
