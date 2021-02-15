@@ -17,6 +17,13 @@ mongoose.connect(MONGO_URL, {
 });
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use(limiter);
 app.use(helmet());
 app.use(bodyParser.json());
