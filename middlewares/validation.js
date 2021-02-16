@@ -6,8 +6,6 @@ const validateUserBody = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30)
       .messages({
-        // 'any.required': 'Запоните поле "Имя"',
-        // 'string.empty': 'Запоните поле "Имя"',
         'string.min': 'Минимальная длина поля "Имя" - 2 символа',
         'string.max': 'Максимальная длина поля "Имя" - 30 символов',
       }),
@@ -17,10 +15,6 @@ const validateUserBody = celebrate({
       }
       return helpers.message('Невалидный email');
     }),
-    // .messages({
-    //   'any.required': 'Запоните поле "email"',
-    //   'string.empty': 'Запоните поле "email"',
-    // }),
   }),
 });
 
@@ -34,11 +28,11 @@ const validateMovieBody = celebrate({
     director: Joi.string().required()
       .messages({
         'any.required': 'Поле "director" не может быть пустым',
-        'string.empty': 'Поле "director" не может быть пустым',
       }),
     duration: Joi.number().required()
       .messages({
         'any.required': 'Поле "duration" не может быть пустым',
+        'string.number': 'duration" не может быть пустым',
       }),
     year: Joi.string().required()
       .messages({
