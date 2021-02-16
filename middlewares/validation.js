@@ -6,8 +6,8 @@ const validateUserBody = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30)
       .messages({
-        'any.required': 'Запоните поле "Имя"',
-        'string.empty': 'Запоните поле "Имя"',
+        // 'any.required': 'Запоните поле "Имя"',
+        // 'string.empty': 'Запоните поле "Имя"',
         'string.min': 'Минимальная длина поля "Имя" - 2 символа',
         'string.max': 'Максимальная длина поля "Имя" - 30 символов',
       }),
@@ -16,11 +16,11 @@ const validateUserBody = celebrate({
         return value;
       }
       return helpers.message('Невалидный email');
-    })
-      .messages({
-        'any.required': 'Запоните поле "email"',
-        'string.empty': 'Запоните поле "email"',
-      }),
+    }),
+    // .messages({
+    //   'any.required': 'Запоните поле "email"',
+    //   'string.empty': 'Запоните поле "email"',
+    // }),
   }),
 });
 
