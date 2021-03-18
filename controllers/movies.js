@@ -11,7 +11,7 @@ const {
 } = require('../constants/constants');
 
 const getMyMovies = (req, res, next) => Movie.find({ owner: req.user._id })
-  .then((cards) => res.send(cards))
+  .then((movies) => res.send(movies))
   .catch(next);
 
 const createMovie = (req, res, next) => {
@@ -29,7 +29,7 @@ const createMovie = (req, res, next) => {
     nameEN,
     thumbnail,
   } = req.body;
-  Movie.findOne({ movieId })
+  Movie.findOne({ movieId, owner: creatorId })
     .then((result) => {
       if (result === null) {
         return Movie.create({

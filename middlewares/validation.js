@@ -94,6 +94,7 @@ const validateMovieBody = celebrate({
 const validateObjId = celebrate({
   params: Joi.object().keys({
     movieId: Joi.string().required().custom((value, helpers) => {
+      console.log(value);
       if (ObjectId.isValid(value)) {
         return value;
       }
@@ -111,7 +112,7 @@ const validateAuthentication = celebrate({
       return helpers.message('Невалидный email');
     })
       .messages({
-        'any.required': 'Запоните поле "email"',
+        'any.required': 'Заполните поле "email"',
         'string.empty': 'Запоните поле "email"',
       }),
     password: Joi.string().required()
