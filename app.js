@@ -11,13 +11,14 @@ const limiter = require('./middlewares/limiter');
 
 const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/moviesdb' } = process.env;
 const app = express();
+
+app.use(cors());
+
 mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
 });
-
-app.use(cors());
 
 app.use(requestLogger);
 
