@@ -8,11 +8,14 @@ const router = require('./routes/index');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./errors/errorHandler');
 const limiter = require('./middlewares/limiter');
+const { ALLOWED_CORS } = require('./constants/constants');
 
 const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/moviesdb' } = process.env;
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: ALLOWED_CORS,
+}));
 
 mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
