@@ -53,7 +53,7 @@ const createMovie = (req, res, next) => {
             if (err.name === 'ValidationError') {
               next(new BadRequestError(textInvalidData));
             } else {
-              next(err);
+              next(new BadRequestError(err.name));
             }
           });
       }
