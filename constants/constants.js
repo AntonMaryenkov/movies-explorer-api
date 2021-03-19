@@ -9,11 +9,11 @@ const textNameLengthMin = 'Минимальная длина поля "Имя" -
 const textSimplePassword = 'Простой пароль';
 const textServerErr = 'На сервере произошла ошибка';
 const textNotFound = 'Запрашиваемый ресурс не найден';
-const ALLOWED_CORS = [
-  'localhost:3000',
-  'https://movies-explorer.maryenkov.students.nomoredomains.icu',
-  'https://api.movies-explorer.maryenkov.students.nomoredomains.icu',
-];
+// const ALLOWED_CORS = [
+//   'localhost:3000',
+//   'https://movies-explorer.maryenkov.students.nomoredomains.icu',
+//   'https://api.movies-explorer.maryenkov.students.nomoredomains.icu',
+// ];
 
 module.exports = {
   textInvalidData,
@@ -27,5 +27,4 @@ module.exports = {
   textSimplePassword,
   textServerErr,
   textNotFound,
-  ALLOWED_CORS,
 };
